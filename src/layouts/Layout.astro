@@ -1,22 +1,25 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/favicon_32.png" />
+    <link rel="icon" type="image/png" href="/favicon_256.png" />
+    <link
+      href="https://cdn.prod.website-files.com/66cfddaa1d0f79b524971014/66dc210802429c73b80c27eb_favicon_32.png"
+      rel="shortcut icon"
+      type="image/x-icon"
+    />
+    <link
+      href="https://cdn.prod.website-files.com/66cfddaa1d0f79b524971014/66dc210da803d0d57fe3b539_favicon_256.png"
+      rel="apple-touch-icon"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <title>Ichiban Clone</title>
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    <link rel="stylesheet" href="/src/styles/variables.css" />
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
