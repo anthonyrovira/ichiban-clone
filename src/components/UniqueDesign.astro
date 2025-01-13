@@ -1,0 +1,102 @@
+---
+import { Image } from "astro:assets";
+---
+
+<section id="unique-design" class="unique container">
+  <div class="kanso-heading">
+    <h2 class="heading-small">CRAFTED WITH THE SPIRIT OF KANSO</h2>
+    <Image src={"/images/simplicity.svg"} alt={"Simplicity written in Japanese"} width={432} height={211} class="heading-image" />
+  </div>
+  <div class="kanso-content__grid">
+    <Image src={"/images/dots.png"} alt={"dots matrix"} width={873} height={402} class="kanso-content__grid__dots" />
+    <Image src={"/images/dots.png"} alt={"dots matrix"} width={873} height={402} class="kanso-content__grid__dots" />
+    <p class="kanso-content__grid__text">
+      Embodying the Japanese principle of Kanso, the Ichiban electric motorcycle showcases the beauty of simplicity and purpose in
+      design.
+    </p>
+    <p class="kanso-content__grid__text">
+      Amidst the cacophony of the world, it offers an escape into a tranquil journey, not just transporting you to your
+      destination, but enriching the entire ride.
+    </p>
+  </div>
+</section>
+
+<style>
+  .unique {
+    z-index: 10;
+    position: absolute;
+    height: 100vh;
+  }
+
+  .kanso-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 550px;
+    text-wrap: pretty;
+  }
+
+  .kanso-heading .heading-image {
+    width: max-content;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .kanso-heading .heading-small {
+    background-image: linear-gradient(180deg, var(--text-gradient-start), var(--text-gradient-end));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-family: "Akira Expanded", sans-serif;
+    font-size: 1.875rem;
+    line-height: 1.4;
+  }
+
+  .kanso-content__grid {
+    max-width: 640px;
+    grid-column-gap: 2.5rem;
+    grid-row-gap: 2.5rem;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-columns: 1fr;
+    padding-block: 2rem;
+    display: grid;
+  }
+
+  .kanso-content__grid .kanso-content__grid__dots {
+    height: max-content;
+    width: 100%;
+    max-width: 873px;
+    object-fit: contain;
+  }
+
+  .kanso-content__grid .kanso-content__grid__text {
+    font-family: "Consola", sans-serif;
+    font-weight: 500;
+    text-wrap: pretty;
+    color: var(--gray800);
+    margin-bottom: 0;
+    margin-top: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .unique {
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .kanso-heading {
+      gap: 1rem;
+    }
+
+    .kanso-heading h2 {
+      font-size: 2rem;
+    }
+
+    .unique p {
+      font-size: 1.25rem;
+    }
+  }
+</style>
