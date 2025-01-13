@@ -1,131 +1,15 @@
 ---
-import ichibanLogo from "../assets/logo.png";
-import { images } from "../assets/hero-images.ts";
-import arrowScroll from "../assets/arrow-scroll.svg";
+import Hero from "./Hero.astro";
 ---
 
-<div id="container">
+<div>
   <main>
-    <div class="hero-container">
-      <div class="the-sun">
-        <img src={ichibanLogo.src} alt="Ichiban Logo" class="logo" height="56" fetchpriority="high" />
-      </div>
-      <div class="arrow-scroll-container">
-        <span class="arrow-scroll-text">SCROLL</span>
-        <div class="arrow-scroll-square">
-          <img src={arrowScroll.src} alt="Arrow Scroll" class="arrow-scroll" />
-        </div>
-        <span class="arrow-scroll-text">FOR MORE</span>
-      </div>
-    </div>
-    <img src={images[0].p} alt="Ichiban Hero" class="hero-moto-image" />
+    <Hero />
   </main>
 </div>
 
 <style>
   main {
-    height: 100vh;
-    width: 100vw;
-  }
-
-  .hero-container {
-    position: relative;
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-
-  .the-sun {
-    position: relative;
-    margin: 0 auto;
-    box-shadow: none;
-    background-image: linear-gradient(58deg, #c74c20, var(--primary500) 38%);
-    width: 800px;
-    height: 800px;
-    border-radius: 100%;
-    z-index: 1;
-    margin-top: -580px;
-    animation: slideInDown 1500ms ease-out;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .logo {
-    margin: 0 auto;
-    margin-top: 500px;
-    max-height: 56px;
-  }
-
-  @keyframes slideInDown {
-    from {
-      transform: translate3d(0, -100%, 0);
-      opacity: 0;
-    }
-
-    to {
-      transform: translate3d(0, 0, 0);
-      opacity: 1;
-    }
-  }
-
-  .hero-moto-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100dvh;
-    object-fit: cover;
-  }
-
-  .arrow-scroll-container {
-    position: absolute;
-    top: 51rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    z-index: 10;
-  }
-
-  .arrow-scroll-text {
-    font-family: Consola, sans-serif;
-    font-weight: normal;
-    font-size: 0.75rem;
-    color: var(--gray800);
-  }
-
-  .arrow-scroll-square {
-    color: black;
-    border: 1.5px solid black;
-    border-radius: 2px;
-    flex-flow: column;
-    justify-content: center;
-    align-items: center;
-    width: 1.2rem;
-    height: 1.2rem;
-    display: flex;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .arrow-scroll {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 0.5rem;
-    height: 0.625rem;
-    display: flex;
-    animation: arrowDown 1.5s linear infinite;
-  }
-
-  @keyframes arrowDown {
-    0% {
-      transform: translateY(-200%);
-    }
-
-    100% {
-      transform: translateY(200%);
-    }
+    height: 300dvh;
   }
 </style>

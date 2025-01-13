@@ -1,0 +1,159 @@
+---
+import { generateFrameUrls } from "@/utils/imageLoader";
+
+const totalFrames = 151 as const;
+const frameUrls = generateFrameUrls(totalFrames);
+---
+
+<div class="sequence-container">
+  <div id="moto-image" class="hero-moto-image"></div>
+  <img id="sequence-loader" class="sequence-loader" src="/frames/moto-001.webp" alt="Moto Sequence Loader" />
+</div>
+
+<script define:vars={{ frameUrls, totalFrames }}>
+  const imageCache = new Map();
+  let currentFrame = 0;
+  let isLoaded = false;
+  let ticking = false;
+  let maxScroll = 0;
+
+  const motoImage = document.getElementById("moto-image");
+  const loader = document.getElementById("sequence-loader");
+
+  async function preloadImages() {
+    const loadingPromises = frameUrls.map((url, index) => {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => {
+          imageCache.set(index, img);
+          resolve();
+        };
+        img.onerror = reject;
+        img.src = url;
+      });
+    });
+
+    try {
+      await Promise.all(loadingPromises);
+      isLoaded = true;
+      loader?.remove();
+      updateImage(0);
+      console.log("Images chargées:", imageCache.size);
+    } catch (error) {
+      console.error("Erreur de chargement:", error);
+    }
+  }
+
+  function updateImage(frame) {
+    if (!isLoaded || !motoImage) return;
+
+    const cachedImage = imageCache.get(frame);
+    if (cachedImage) {
+      const imageUrl = cachedImage.src;
+      motoImage.style.backgroundImage = `url('${imageUrl}')`;
+      console.log("Frame mise à jour:", frame, imageUrl);
+    }
+  }
+
+  function calculateMaxScroll() {
+    // Hauteur totale de la page moins la hauteur de la fenêtre
+    const documentHeight = document.documentElement.scrollHeight;
+    const windowHeight = window.innerHeight;
+    maxScroll = documentHeight - windowHeight;
+    console.log("MaxScroll calculé:", maxScroll);
+    return maxScroll;
+  }
+
+  function handleScroll() {
+    if (!isLoaded) return;
+
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const scrollPosition = window.scrollY;
+        // Recalculer maxScroll si nécessaire
+        if (maxScroll <= 0) {
+          calculateMaxScroll();
+        }
+
+        // Assurer que maxScroll n'est pas 0 pour éviter la division par 0
+        if (maxScroll > 0) {
+          const scrollFraction = Math.max(0, Math.min(1, scrollPosition / maxScroll));
+          const frame = Math.min(Math.floor(scrollFraction * (totalFrames - 1)), totalFrames - 1);
+
+          console.log({
+            scrollPosition,
+            maxScroll,
+            scrollFraction,
+            calculatedFrame: frame,
+            currentFrame,
+          });
+
+          if (frame !== currentFrame) {
+            currentFrame = frame;
+            updateImage(frame);
+          }
+        }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  function init() {
+    // Calculer maxScroll après que tout le contenu est chargé
+    calculateMaxScroll();
+
+    // Attendre que les images soient chargées avant d'ajouter l'écouteur de scroll
+    preloadImages().then(() => {
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      console.log("Écouteur de scroll ajouté");
+    });
+
+    // Recalculer maxScroll lors du redimensionnement
+    window.addEventListener(
+      "resize",
+      () => {
+        calculateMaxScroll();
+      },
+      { passive: true }
+    );
+  }
+
+  // S'assurer que le DOM est complètement chargé
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+</script>
+
+<style>
+  .sequence-container {
+    width: 100vw;
+    height: 100dvh;
+    object-fit: cover;
+    position: fixed;
+  }
+
+  .hero-moto-image {
+    width: 100vw;
+    height: 100dvh;
+    object-fit: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    will-change: background-image;
+  }
+
+  .sequence-loader {
+    width: 100vw;
+    height: 100dvh;
+    object-fit: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+</style>
