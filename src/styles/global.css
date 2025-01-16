@@ -35,9 +35,13 @@ body {
   height: 100%;
 }
 
-.container {
+.page-padding {
   padding-inline: 2rem;
-  margin-inline: 3rem;
+}
+
+.container {
+  max-width: 80rem;
+  margin: 0 auto;
 }
 
 p {

@@ -2,7 +2,7 @@
 
 ---
 
-<section class="header container">
+<header class="header">
   <div class="header__sun">
     <img src="/logo.png" alt="Ichiban Logo" class="header__sun__logo" height="56" fetchpriority="high" />
   </div>
@@ -98,12 +98,13 @@
       <div class="header__content__column__border header__content__column__border--top"></div>
     </div>
   </div>
-</section>
+</header>
 
 <style>
   .header {
-    font-family: Consola, sans-serif;
-    position: relative;
+    font-family: "Consola", sans-serif;
+    display: flex;
+    flex-direction: column;
   }
 
   .header__sun {
@@ -141,14 +142,10 @@
 
   .header__content {
     width: 100%;
-    position: absolute;
-    top: 51rem;
-    left: 50%;
-    transform: translateX(-50%);
+    margin-top: 0.875rem;
     display: grid;
     grid-template-columns: 0.5fr 1fr 0.5fr;
     grid-auto-columns: 1fr;
-    padding-inline: 2rem;
     z-index: 10;
   }
 

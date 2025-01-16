@@ -1,14 +1,19 @@
 ---
-import { generateFrameUrls } from "@/utils/imageLoader";
+import Header from "./Header.astro";
+import { generateHeroFrameUrls } from "@/utils/imageLoader";
 
 const totalFrames = 151 as const;
-const frameUrls = generateFrameUrls(totalFrames);
+const frameUrls = generateHeroFrameUrls(totalFrames);
 ---
 
-<div class="sequence-container">
-  <div id="moto-image" class="hero-moto-image"></div>
-  <img id="sequence-loader" class="sequence-loader" src="/frames/moto-001.webp" alt="Moto Sequence Loader" />
-</div>
+<section class="hero container">
+  <Header />
+  <div class="sequence-container">
+    <div id="moto-image" class="hero-moto-image"></div>
+    <img id="sequence-loader" class="sequence-loader" src="/frames/moto-001.webp" alt="Moto Sequence Loader" />
+  </div>
+  <div class="animation_spacer"></div>
+</section>
 
 <script define:vars={{ frameUrls, totalFrames }}>
   const imageCache = new Map();
@@ -56,11 +61,10 @@ const frameUrls = generateFrameUrls(totalFrames);
   }
 
   function calculateMaxScroll() {
-    // Hauteur totale de la page moins la hauteur de la fenêtre
-    const documentHeight = document.documentElement.scrollHeight;
+    const heroSectionHeight = 2585;
+
     const windowHeight = window.innerHeight;
-    maxScroll = documentHeight - windowHeight;
-    console.log("MaxScroll calculé:", maxScroll);
+    maxScroll = heroSectionHeight - windowHeight;
     return maxScroll;
   }
 
@@ -70,12 +74,12 @@ const frameUrls = generateFrameUrls(totalFrames);
     if (!ticking) {
       requestAnimationFrame(() => {
         const scrollPosition = window.scrollY;
-        // Recalculer maxScroll si nécessaire
+        // Recalculate maxScroll if needed
         if (maxScroll <= 0) {
           calculateMaxScroll();
         }
 
-        // Assurer que maxScroll n'est pas 0 pour éviter la division par 0
+        // Make sure maxScroll is not 0 to avoid division by 0
         if (maxScroll > 0) {
           const scrollFraction = Math.max(0, Math.min(1, scrollPosition / maxScroll));
           const frame = Math.min(Math.floor(scrollFraction * (totalFrames - 1)), totalFrames - 1);
@@ -100,16 +104,16 @@ const frameUrls = generateFrameUrls(totalFrames);
   }
 
   function init() {
-    // Calculer maxScroll après que tout le contenu est chargé
+    // Calculate maxScroll after the DOM is loaded
     calculateMaxScroll();
 
-    // Attendre que les images soient chargées avant d'ajouter l'écouteur de scroll
+    // Wait for images to preload before adding scroll listener
     preloadImages().then(() => {
       window.addEventListener("scroll", handleScroll, { passive: true });
       console.log("Écouteur de scroll ajouté");
     });
 
-    // Recalculer maxScroll lors du redimensionnement
+    // Recalculate maxScroll on resize
     window.addEventListener(
       "resize",
       () => {
@@ -119,7 +123,7 @@ const frameUrls = generateFrameUrls(totalFrames);
     );
   }
 
-  // S'assurer que le DOM est complètement chargé
+  // Make sure the DOM is fully loaded before running the script
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
   } else {
@@ -128,15 +132,25 @@ const frameUrls = generateFrameUrls(totalFrames);
 </script>
 
 <style>
+  .hero {
+    height: 250dvh;
+  }
+
+  .animation_spacer {
+    display: block;
+    height: 100dvh;
+  }
+
   .sequence-container {
-    width: 100vw;
+    width: 100dvw;
     height: 100dvh;
     object-fit: cover;
     position: fixed;
+    z-index: -10;
   }
 
   .hero-moto-image {
-    width: 100vw;
+    width: 100dvw;
     height: 100dvh;
     object-fit: cover;
     position: fixed;
@@ -149,7 +163,7 @@ const frameUrls = generateFrameUrls(totalFrames);
   }
 
   .sequence-loader {
-    width: 100vw;
+    width: 100dvw;
     height: 100dvh;
     object-fit: cover;
     position: fixed;

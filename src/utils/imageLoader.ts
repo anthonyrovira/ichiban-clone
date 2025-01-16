@@ -3,9 +3,21 @@
  * @param totalFrames - number of frames
  * @returns array of frame urls
  */
-export function generateFrameUrls(totalFrames: number) {
+export function generateHeroFrameUrls(totalFrames: number) {
   return Array.from({ length: totalFrames }, (_, i) => {
     const frameNumber = `${(i + 1).toString().padStart(3, "0")}`;
-    return `/frames/moto-${frameNumber}.webp`;
+    return `/frames/hero/moto-${frameNumber}.webp`;
+  });
+}
+
+/**
+ * Generate frame urls
+ * @param totalFrames - number of frames
+ * @returns array of frame urls
+ */
+export function generateTransmissionFrameUrls(totalFrames: number) {
+  return Array.from({ length: totalFrames }, (_, i) => {
+    const frameNumber = `${(i + 1).toString().padStart(3, "0")}`;
+    return `/frames/transmission/img-${frameNumber}.webp`;
   });
 }
