@@ -1,6 +1,8 @@
 ---
+import GodzillaMode from "@/components/GodzillaMode.astro";
 import Hero from "@/components/Hero.astro";
 import KeyFeatures from "@/components/KeyFeatures.astro";
+import ThrillOfRiding from "@/components/ThrillOfRiding.astro";
 import UniqueDesign from "@/components/UniqueDesign.astro";
 import Layout from "@/layouts/Layout.astro";
 ---
@@ -13,21 +15,7 @@ import Layout from "@/layouts/Layout.astro";
     </div>
     <div class="gradient gradient-up"></div>
     <KeyFeatures />
-    <div class="gradient gradient-down"></div>
+    <GodzillaMode />
+    <ThrillOfRiding />
   </main>
 </Layout>
-
-<style>
-  .gradient {
-    width: 100%;
-    height: 300px;
-  }
-
-  .gradient-up {
-    background-image: linear-gradient(180deg, #d0d5dd00, var(--gray300));
-  }
-
-  .gradient-down {
-    background-image: linear-gradient(0deg, #d0d5dd00, var(--gray300));
-  }
-</style>

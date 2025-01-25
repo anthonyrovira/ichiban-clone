@@ -1,0 +1,340 @@
+---
+import { generateHeartFrameUrls } from "@/utils/imageLoader";
+import { getCldVideoUrl, getCldImageUrl } from "astro-cloudinary/helpers";
+import { Image } from "astro:assets";
+
+const totalFrames = 31 as const;
+const frameUrls = generateHeartFrameUrls(totalFrames);
+
+const motoVideo = getCldVideoUrl({
+  src: "https://res.cloudinary.com/hysteria/video/upload/v1736877171/ichiban/Side_Loop_Video_1_CUT-transcode_gykudu.mp4",
+});
+const godzillaVideo = getCldVideoUrl({
+  src: "https://res.cloudinary.com/hysteria/video/upload/v1736877171/ichiban/Godzilla_screams_f75126-transcode_h0nosz.mp4",
+});
+const godzillaImage = getCldImageUrl({
+  src: "https://res.cloudinary.com/hysteria/image/upload/v1737119790/ichiban/godzilla_image_xe6dft.png",
+});
+---
+
+<section id="godzilla-mode" class="godzilla">
+  <div class="gradient gradient-down"></div>
+  <div class="godzilla__video-container">
+    <video src={motoVideo} autoplay={true} muted={true} controls={false} loop={true}></video>
+  </div>
+
+  <div class="godzilla__container page-padding">
+    <div class="godzilla__content container">
+      <div class="godzilla__content__right">
+        <h3>
+          Activating Godzilla mode unleashes unparalleled torque and power for a breathtaking 10 seconds of pure motorcycling
+          frenzy
+        </h3>
+        <div class="godzilla__content__cards">
+          <div class="godzilla__content__cards__container">
+            <div class="godzilla__content__card__left">
+              <video src={godzillaVideo} autoplay={true} muted={true} controls={false} loop={true}></video>
+            </div>
+            <div class="godzilla__content__card__right">
+              <Image src={godzillaImage} alt={"Godzilla Mode 2"} width={300} height={300} />
+              <p>Godzilla Mode</p>
+            </div>
+          </div>
+        </div>
+        <h3>guaranteed to accelerate your heartbeat with intense exhilaration</h3>
+        <div class="godzilla__content__cards-hearts">
+          <div class="godzilla__content__cards-hearts__container">
+            <div class="godzilla__content__cards-hearts__left sides">
+              <figure id="animated-heart-1" class="animated-heart sides"></figure>
+            </div>
+            <div class="godzilla__content__cards-hearts__center">
+              <figure id="animated-heart-2" class="animated-heart"></figure>
+            </div>
+            <div class="godzilla__content__cards-hearts__right sides">
+              <figure id="animated-heart-3" class="animated-heart sides"></figure>
+            </div>
+          </div>
+        </div>
+        <h3 class="godzilla__content__right__last-item">
+          The only thought crossing your mind as you dismount your Ichiban will be the eagerness for your next thrilling ride
+        </h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ frameUrls, totalFrames }}>
+  const animatedHeart1 = document.getElementById("animated-heart-1");
+  const animatedHeart2 = document.getElementById("animated-heart-2");
+  const animatedHeart3 = document.getElementById("animated-heart-3");
+
+  // Cache for preloaded images
+  const imageCache = new Map();
+  let currentFrame = 0;
+  let isLoaded = false;
+  const frameRate = 12;
+  let animationInterval;
+  let isAnimating = false;
+
+  // Preload all frames before starting animation
+  async function preloadImages() {
+    // Prevent multiple preloading calls
+    if (isLoaded) return;
+
+    const loadingPromises = frameUrls.map((url) => {
+      return new Promise((resolve, reject) => {
+        // Check if image is already cached
+        if (imageCache.has(url)) {
+          resolve();
+          return;
+        }
+
+        const img = new Image();
+        img.onload = () => {
+          imageCache.set(url, img);
+          resolve();
+        };
+        img.onerror = reject;
+        img.src = url;
+      });
+    });
+
+    try {
+      await Promise.all(loadingPromises);
+      isLoaded = true;
+      startAnimation();
+      console.log("Images loaded:", imageCache.size);
+    } catch (error) {
+      console.error("Loading error:", error);
+    }
+  }
+
+  function updateImage(frame) {
+    if (!animatedHeart1 || !animatedHeart2 || !animatedHeart3 || !isAnimating) return;
+
+    const url = frameUrls[frame];
+    const img = imageCache.get(url);
+
+    if (img) {
+      // Use requestAnimationFrame for smoother transitions
+      requestAnimationFrame(() => {
+        animatedHeart1.style.backgroundImage = `url(${img.src})`;
+        animatedHeart2.style.backgroundImage = `url(${img.src})`;
+        animatedHeart3.style.backgroundImage = `url(${img.src})`;
+      });
+    }
+  }
+
+  function startAnimation() {
+    if (!isLoaded || isAnimating) return;
+
+    isAnimating = true;
+
+    // Clear any existing interval
+    if (animationInterval) {
+      clearInterval(animationInterval);
+    }
+
+    // Use requestAnimationFrame for the first frame
+    requestAnimationFrame(() => {
+      updateImage(currentFrame);
+    });
+
+    // Set up the animation interval
+    animationInterval = setInterval(() => {
+      currentFrame = (currentFrame + 1) % totalFrames;
+      updateImage(currentFrame);
+    }, 1000 / frameRate);
+  }
+
+  function stopAnimation() {
+    isAnimating = false;
+    if (animationInterval) {
+      clearInterval(animationInterval);
+      animationInterval = null;
+    }
+  }
+
+  // Optional: Add cleanup function
+  function cleanup() {
+    stopAnimation();
+    imageCache.clear();
+    isLoaded = false;
+  }
+
+  // Start preloading when script runs
+  preloadImages();
+
+  // Optional: Clean up on page unload
+  window.addEventListener("unload", cleanup);
+</script>
+
+<style>
+  .godzilla {
+    position: relative;
+    height: 430dvh;
+  }
+
+  .godzilla .gradient {
+    position: absolute;
+    width: 100%;
+    z-index: 0;
+  }
+
+  .godzilla__video-container {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -10;
+  }
+
+  .godzilla__video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .godzilla__container {
+    position: relative;
+    z-index: 10;
+  }
+
+  .godzilla__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+
+  .godzilla__content__right {
+    grid-column: 2;
+  }
+
+  .godzilla__content__cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    margin-top: 9rem;
+    margin-bottom: 26rem;
+  }
+
+  .godzilla__content__cards__container {
+    grid-column: 2;
+    display: inline-flex;
+  }
+
+  .godzilla__content__card__left,
+  .godzilla__content__card__right {
+    width: 9rem;
+    height: 12rem;
+    overflow: hidden;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 40px 56px -16px #0000004d;
+  }
+
+  .godzilla__content__card__left {
+    rotate: -8deg;
+  }
+
+  .godzilla__content__card__right {
+    rotate: 8deg;
+    background-color: white;
+    padding: 1rem;
+  }
+
+  .godzilla__content__card__left video {
+    border-radius: 1rem;
+    object-fit: cover;
+    height: 100%;
+    width: auto;
+  }
+
+  .godzilla__content__card__right img {
+    width: 80px;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .godzilla__content__card__right p {
+    font-family: "Akira Expanded", sans-serif;
+    color: var(--gray800);
+  }
+
+  .godzilla__content h3 {
+    color: white;
+    font-family: "Akira Expanded", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .godzilla__content__cards-hearts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .godzilla__content__cards-hearts__container {
+    grid-column: 2;
+    display: inline-flex;
+    margin-top: 8rem;
+    margin-bottom: 24rem;
+  }
+
+  .godzilla__content__cards-hearts__left,
+  .godzilla__content__cards-hearts__right,
+  .godzilla__content__cards-hearts__center {
+    padding: 1.5rem 0.5rem;
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 40px 56px -16px #0000004d;
+    overflow: hidden;
+  }
+
+  .godzilla__content__cards-hearts__left {
+    rotate: -5deg;
+  }
+
+  .godzilla__content__cards-hearts__right {
+    rotate: 5deg;
+  }
+  .godzilla__content__cards-hearts__left,
+  .godzilla__content__cards-hearts__right {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    z-index: 10;
+  }
+
+  .godzilla__content__cards-hearts__center,
+  .godzilla__content__cards-hearts__right {
+    margin-left: -1.5rem;
+  }
+
+  .animated-heart {
+    margin: 0;
+    width: 4.5rem;
+    height: 4.5rem;
+    object-fit: cover;
+    background-size: 300%;
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    will-change: background-image;
+  }
+
+  .godzilla__content__cards-hearts__center .animated-heart {
+    width: 7rem;
+    height: 7rem;
+  }
+
+  .godzilla__content__cards-hearts__center {
+    z-index: 20;
+  }
+
+  .godzilla__content__right__last-item {
+    margin-bottom: 9rem;
+  }
+</style>

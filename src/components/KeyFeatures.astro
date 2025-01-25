@@ -88,7 +88,7 @@ const powerImg = getCldImageUrl({ src: "https://res.cloudinary.com/hysteria/imag
       </div>
     </div>
 
-    <footer class="key-features__title">
+    <footer class="key-features__title down">
       <p class="key-features__title__left">SECTION 002</p>
       <div class="key-features__title__center">
         <p class="key-features__title__center__left-bracket">[</p>
@@ -211,7 +211,7 @@ const powerImg = getCldImageUrl({ src: "https://res.cloudinary.com/hysteria/imag
   .key-features-container {
     display: flex;
     flex-direction: column;
-    height: 300dvh;
+    height: max-content;
   }
 
   .key-features__title {
@@ -222,6 +222,10 @@ const powerImg = getCldImageUrl({ src: "https://res.cloudinary.com/hysteria/imag
     width: 100%;
     font-size: 0.875rem;
     font-family: "Consola", sans-serif;
+  }
+
+  .key-features__title.down {
+    padding-bottom: 6rem;
   }
 
   .key-features__title__left {
@@ -430,6 +434,7 @@ const powerImg = getCldImageUrl({ src: "https://res.cloudinary.com/hysteria/imag
     height: 360px;
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     will-change: background-image;

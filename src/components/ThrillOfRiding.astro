@@ -1,0 +1,66 @@
+---
+import { getCldImageUrl } from "astro-cloudinary/helpers";
+import { Image } from "astro:assets";
+
+const ichibanLogo = getCldImageUrl({
+  src: "https://res.cloudinary.com/hysteria/image/upload/v1736965583/ichiban/favicon_256_ta3bwq.png",
+});
+---
+
+<div class="thrill">
+  <div class="gradient gradient-up"></div>
+  <div class="page-padding">
+    <div class="thrill__container container">
+      <Image src={ichibanLogo} class="thrill__container__image" alt="Ichiban logo" width={128} height={128} />
+      <p class="thrill__container__text">
+        This is The thrill of riding <span class="thrill__container__text--red">Ichiban</span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .thrill {
+    position: relative;
+    background-color: var(--gray300);
+  }
+
+  .gradient-up {
+    position: absolute;
+    width: 100%;
+    top: -300px;
+  }
+
+  .thrill__container {
+    height: 100dvh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .thrill__container__image {
+    border-radius: 50%;
+    box-shadow:
+      inset 0 16px 24px #ad450d,
+      0 2px 40px #a417054d;
+  }
+
+  .thrill__container__text {
+    margin-top: 0;
+    color: var(--gray800);
+    text-align: center;
+    letter-spacing: -1px;
+    width: 100%;
+    max-width: 56rem;
+    font-family: "Akira Expanded", sans-serif;
+    font-size: 3.5rem;
+    line-height: 1.1;
+  }
+
+  .thrill__container__text--red {
+    color: var(--primary500);
+  }
+</style>

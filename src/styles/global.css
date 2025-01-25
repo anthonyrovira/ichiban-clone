@@ -44,6 +44,19 @@ body {
   margin: 0 auto;
 }
 
+.gradient {
+  width: 100%;
+  height: 300px;
+}
+
+.gradient-up {
+  background-image: linear-gradient(180deg, #d0d5dd00, var(--gray300));
+}
+
+.gradient-down {
+  background-image: linear-gradient(0deg, #d0d5dd00, var(--gray300));
+}
+
 p {
   color: var(--gray800);
   letter-spacing: normal;
