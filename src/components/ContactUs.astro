@@ -1,0 +1,431 @@
+---
+import { getCldImageUrl } from "astro-cloudinary/helpers";
+import { Image } from "astro:assets";
+
+const ctaImage = getCldImageUrl({
+  src: "https://res.cloudinary.com/hysteria/image/upload/v1738076478/ichiban/CTA_Image_yfh1b6.jpg",
+});
+const reloadLogo = getCldImageUrl({
+  src: "https://res.cloudinary.com/hysteria/image/upload/v1738076478/ichiban/Reload_Lang_Logo_bam80t.png",
+});
+const ichibanTeam1 = getCldImageUrl({
+  src: "https://res.cloudinary.com/hysteria/image/upload/v1738076478/ichiban/IMG_2_pohbys.jpg",
+});
+const ichibanTeam2 = getCldImageUrl({
+  src: "https://res.cloudinary.com/hysteria/image/upload/v1738076478/ichiban/IMG_3_tozad8.jpg",
+});
+const ichibanTeam3 = getCldImageUrl({
+  src: "https://res.cloudinary.com/hysteria/image/upload/v1738076478/ichiban/IMG_1_e9hvfk.jpg",
+});
+const ichibanHorizontalLogo = getCldImageUrl({
+  src: "https://res.cloudinary.com/hysteria/image/upload/v1738076477/ichiban/Logo_horizontal_with_slogan_black_z0yyma.png",
+});
+---
+
+<div class="contact" id="contact-us">
+  <div class="page-padding">
+    <div class="contact__container container">
+      <div class="contact__form">
+        <div class="contact__form__top-left">
+          <div class="contact__form__top-left__up">
+            <h3 class="contact__form__top-left__up__title">
+              express your interest to stay updated on Ichiban release dates and pricing
+            </h3>
+            <p class="contact__form__top-left__up__text">
+              After winning several design awards and receiving glowing media praise, we've attracted support from innovative
+              companies for distribution, finance, and future technology development. To scale up production, we need your
+              support.
+            </p>
+          </div>
+          <div class="contact__form__top-left__down">
+            <div class="contact__form__top-left__down__card">
+              <input
+                type="email"
+                id="email"
+                placeholder="your@mail.com"
+                name="email"
+                alt="email input field"
+                class="contact__form__top-left__down__card__input-field"
+              />
+              <button class="contact__form__top-left__down__card__button">Express interest</button>
+              <label for="policy" class="contact__form__top-left__down__card__label">
+                <input type="checkbox" name="policy" id="policy" />
+                <div class="contact__form__top-left__down__card__label__checkbox"></div>
+                <span class="contact__form__top-left__down__card__label__text">I agree with Privacy Policy</span>
+              </label>
+            </div>
+            <div class="contact__form__top-left__down__info">
+              <div class="contact__form__top-left__down__info__no-spam">
+                <img src="/icons/policy-check.svg" alt="Policy Check Picture" />
+                <p>no spam guaranteed</p>
+              </div>
+              <p>Your mail will only be used as evidence that real people are interested in our product</p>
+            </div>
+          </div>
+        </div>
+        <div class="contact__form__top-right">
+          <Image src={ctaImage} alt="A man wearing a helmet seated on ichiban bike" width={650} height={800} />
+          <div class="contact__form__top-right__card">
+            <Image src={reloadLogo} alt="Reload logo" width={128} height={128} />
+            <div class="contact__form__top-right__card__text">
+              <h4>Reload Land</h4>
+              <p>official partner</p>
+            </div>
+          </div>
+        </div>
+        <div class="contact__form__bottom-left">
+          <Image src={ichibanTeam1} alt="A designer standing ahead of ichiban moto sketches" width={2560} height={1706} />
+          <div class="contact__form__bottom-left__content">
+            <p class="contact__form__bottom-left__content__bold-text">
+              The Ichiban team brings together extensive expertise in motorcycle design and the development of cutting-edge
+              technology products.
+            </p>
+            <p class="contact__form__bottom-left__content__text">
+              Led by award-winning industrial designer Ivan Zhurba, the team combines a diverse skill set with a shared passion
+              for innovation, making them uniquely positioned to revolutionize the motorcycling industry.
+            </p>
+          </div>
+        </div>
+        <div class="contact__form__bottom-right">
+          <div class="contact__form__bottom-right__image">
+            <Image
+              src={ichibanTeam2}
+              alt="Two people of Ichiban Team showing a sketch of the ichiban moto"
+              width={2560}
+              height={1707}
+            />
+          </div>
+          <div class="contact__form__bottom-right__image">
+            <Image
+              src={ichibanTeam3}
+              alt="A man reading a magazine talking about ichiban motorcycles"
+              width={2560}
+              height={1707}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const checkbox = document.querySelector(".contact__form__top-left__down__card__label__checkbox");
+  const span = document.querySelector(".contact__form__top-left__down__card__label__text");
+
+  checkbox!.addEventListener("click", () => {
+    checkbox!.classList.toggle("checked");
+  });
+
+  span!.addEventListener("click", () => {
+    checkbox!.classList.toggle("checked");
+  });
+</script>
+
+<style>
+  .contact {
+    position: relative;
+    background-color: var(--gray300);
+  }
+
+  .contact__container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact__form {
+    padding-top: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: auto;
+    gap: 1rem;
+  }
+
+  .contact__form__top-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem;
+    border-radius: 2rem;
+    background-color: var(--gray200);
+    box-shadow:
+      inset 0 2px 8px #fff6,
+      0 32px 56px -32px #0000001a,
+      inset 0 12px 32px #ffffffb3;
+  }
+
+  .contact__form__top-left__up {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .contact__form__top-left__up__title {
+    margin: 0;
+    letter-spacing: -0.02em;
+    background-image: linear-gradient(180deg, var(--text-gradient-start), var(--text-gradient-end));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.3;
+    font-family: "Akira Expanded", sans-serif;
+    width: 100%;
+  }
+
+  .contact__form__top-left__up__text {
+    margin: 0;
+    font-family: "Consola", sans-serif;
+    text-wrap: pretty;
+    font-size: 1rem;
+  }
+
+  .contact__form__top-left__down {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact__form__top-left__down__card {
+    background-color: var(--gray300);
+    border-radius: 1.2rem;
+    margin-bottom: 0;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact__form__top-left__down__card__input-field {
+    border: 1px solid var(--gray300);
+    background-color: var(--white);
+    color: var(--gray900);
+    border-radius: 12px;
+    height: auto;
+    min-height: 3.5rem;
+    margin-bottom: 0;
+    padding: 0.5rem 0.875rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    outline: none;
+    font-family: "Consola", sans-serif;
+  }
+
+  .contact__form__top-left__down__card__button {
+    background-color: var(--primary500);
+    margin-top: 0.5rem;
+    color: var(--white);
+    text-align: center;
+    white-space: nowrap;
+    border: 1px solid #fff3;
+    border-radius: 9px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 1.125rem;
+    font-family: "Akira Expanded", sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+    border: 3px solid var(--gray800);
+    display: flex;
+    box-shadow:
+      0 2px 12px #0006,
+      inset 0 2px 4px #fff3,
+      inset 0 12px 16px #ad450d,
+      0 4px 8px #a4170526;
+  }
+
+  .contact__form__top-left__down__card__button:hover {
+    border-color: var(--primary700);
+    background-color: var(--primary400);
+  }
+
+  .contact__form__top-left__down__card__label {
+    display: flex;
+    align-items: center;
+    color: var(--gray500);
+    margin-bottom: 0;
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 0.75rem;
+    font-family: "Consola", sans-serif;
+  }
+
+  .contact__form__top-left__down__card__label__checkbox {
+    background-color: var(--gray400);
+    background-image: url(https://cdn.prod.website-files.com/66cfddaa1d0f79b524971014/66df026aee88cc906461f496_check.png);
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 0.875rem 0.875rem;
+    background-attachment: scroll;
+    border: 0 solid #000;
+    background-color: var(--gray400);
+    cursor: pointer;
+    border-radius: 0.375rem;
+    width: 1.25rem;
+    min-width: 1.25rem;
+    height: 1.25rem;
+    min-height: 1.25rem;
+    margin-top: 0;
+    margin-right: 0.75rem;
+  }
+
+  .contact__form__top-left__down__card__label__checkbox.checked {
+    background-image: none;
+  }
+
+  .contact__form__top-left__down__card__label:hover .contact__form__top-left__down__card__label__checkbox {
+    background-color: var(--gray500);
+  }
+
+  .contact__form__top-left__down__card__label input {
+    opacity: 0;
+    position: absolute;
+    z-index: -20;
+  }
+
+  .contact__form__top-left__down__info {
+    display: grid;
+    grid-column-gap: 0.5rem;
+    grid-row-gap: 0.5rem;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-columns: 1fr;
+    place-items: start;
+  }
+
+  .contact__form__top-left__down__info > p {
+    color: var(--gray800);
+    font-family: "Consola", sans-serif;
+    letter-spacing: 0.4px;
+    font-size: 0.75rem;
+  }
+
+  .contact__form__top-left__down__info__no-spam {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    letter-spacing: 0;
+    font-family: "Akira Expanded", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .contact__form__top-left__down__info__no-spam img {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .contact__form__top-right {
+    overflow: hidden;
+    border-radius: 2rem;
+    position: relative;
+  }
+
+  .contact__form__top-right > img {
+    border-radius: 2rem;
+  }
+
+  .contact__form__top-right__card {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: var(--gray200);
+    padding: 1rem;
+    gap: 1rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .contact__form__top-right__card > img {
+    width: 3.5rem;
+    height: auto;
+  }
+
+  .contact__form__top-right__card__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .contact__form__top-right__card__text > h4 {
+    display: flex;
+    align-items: center;
+    letter-spacing: 0;
+    font-family: "Akira Expanded", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .contact__form__top-right__card__text > p {
+    color: var(--gray800);
+    font-family: "Consola", sans-serif;
+    letter-spacing: 0.4px;
+    font-size: 0.75rem;
+  }
+
+  .contact__form__bottom-left {
+    overflow: hidden;
+    height: 600px;
+    position: relative;
+  }
+
+  .contact__form__bottom-left__content {
+    padding: 1.5rem;
+    background-color: var(--gray200);
+    border-radius: 1.2rem;
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    font-family: "Consola", sans-serif;
+    line-height: 1.2;
+    font-size: 0.875rem;
+    color: var(--gray800);
+    box-shadow:
+      inset 0 2px 8px #fff6,
+      0 32px 56px -32px #0000001a,
+      inset 0 12px 32px #ffffffb3;
+  }
+
+  .contact__form__bottom-left__content__bold-text {
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  .contact__form__bottom-left > img {
+    border-radius: 2rem;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  .contact__form__bottom-right {
+    height: 600px;
+    border-radius: 2rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact__form__bottom-right__image {
+    border-radius: 2rem;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .contact__form__bottom-right img {
+    border-radius: 2rem;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+</style>
