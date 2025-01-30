@@ -1,0 +1,147 @@
+---
+import { getCldImageUrl } from "astro-cloudinary/helpers";
+import { Image } from "astro:assets";
+
+const ichibanHorizontalLogo = getCldImageUrl({
+  src: "https://res.cloudinary.com/hysteria/image/upload/v1738076477/ichiban/Logo_horizontal_with_slogan_black_z0yyma.png",
+});
+const dots = getCldImageUrl({
+  src: "https://res.cloudinary.com/hysteria/image/upload/v1738244842/ichiban/dots_footer_whnc41.png",
+});
+---
+
+<footer class="footer" role="contentinfo">
+  <div class="page-padding">
+    <div class="container">
+      <div class="footer-block-one">
+        <a href="/" aria-current="page" class="footer-block-one__logo">
+          <Image src={ichibanHorizontalLogo} alt="Ichiban Logo" width={529} height={80} />
+        </a>
+        <nav role="navigation" aria-label="Footer navigation" class="footer-block-one__nav">
+          <a href="#unique-design">Unique Design</a>
+          <a href="#key-features">Key Features</a>
+          <a href="#godzilla-mode">Godzilla Mode</a>
+          <a href="#contact-us">Contact Us</a>
+        </nav>
+      </div>
+      <div class="footer-block-two">
+        <Image src={dots} alt="Dots" width={1432} height={134} />
+      </div>
+      <div class="footer-block-three">
+        <div class="footer-block-three__social">
+          <div class="footer-block-three__social__links">
+            <a href="https://github.com/anthonyrovira" rel="noopener noreferrer" target="_blank">
+              <Image src={"/icons/github.svg"} alt={"Link to Anthony Rovira's Github profile"} width={24} height={24} />
+            </a>
+            <a href="https://www.linkedin.com/in/anthonyrovira/?locale=en_US" rel="noopener noreferrer" target="_blank">
+              <Image src={"/icons/linkedin.svg"} alt={"Link to  Anthony Rovira's LinkedIn profile"} width={24} height={24} />
+            </a>
+            <a href="https://x.com/AnthonyRoviraJS" rel="noopener noreferrer" target="_blank">
+              <Image src={"/icons/x.svg"} alt={"Link to  Anthony Rovira's X profile"} width={24} height={24} />
+            </a>
+          </div>
+          <p class="footer-block-three__social__disclaimer">
+            This is a clone development project, made with ❤️ by Anthony Rovira and inspired by <a
+              href="https://www.ichiban.bike"
+              rel="noopener noreferrer"
+              target="_blank">www.ichiban.bike</a
+            >
+          </p>
+        </div>
+        <div class="footer-block-three__legal">
+          <a href="#" rel="noopener noreferrer"> privacy policy </a>
+          <a href="#" rel="noopener noreferrer"> cookie policy </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--gray300);
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .footer-block-one {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-block-one__logo > img {
+    height: 3rem;
+    width: auto;
+  }
+
+  .footer-block-one__nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 2rem;
+    align-self: flex-end;
+  }
+
+  .footer-block-one__nav > a {
+    color: var(--gray800);
+    font-family: "Consola", sans-serif;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    text-decoration: none;
+  }
+
+  .footer-block-two {
+    overflow: hidden;
+    height: 92px;
+  }
+
+  .footer-block-two > img {
+    object-fit: cover;
+  }
+
+  .footer-block-three {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-block-three__social {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .footer-block-three__social__links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .footer-block-three__social__disclaimer {
+    color: var(--gray800);
+    font-family: "Consola", sans-serif;
+    font-size: 0.875rem;
+    text-decoration: none;
+    max-width: 400px;
+    line-height: 1;
+  }
+
+  .footer-block-three__legal {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .footer-block-three__legal > a {
+    color: var(--gray800);
+    font-family: "Consola", sans-serif;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    text-decoration: none;
+  }
+</style>
