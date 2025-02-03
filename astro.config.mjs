@@ -14,10 +14,6 @@ export default defineConfig({
     enabled: false,
   },
 
-  build: {
-    assets: "assets",
-  },
-
   vite: {
     resolve: {
       alias: {
