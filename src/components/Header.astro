@@ -9,20 +9,17 @@
   <div class="header__content">
     <div class="header__content__column header__content__column--left">
       <div class="header__content__column__top"><span>DESCRIPTION</span><span>MOD.001</span></div>
-      <div class="header__content__column__border header__content__column__border--top header__content__column__border--bolder">
-      </div>
-      <div class="header__content__column__border header__content__column__border--top"></div>
-      <div class="header__content__column__border header__content__column__border--top"></div>
-      <div class="header__content__column__border header__content__column__border--top"></div>
-      <div class="header__content__column__border header__content__column__border--top header__content__column__border--bolder">
-      </div>
-      <div class="header__content__column__border header__content__column__border--top"></div>
-      <div class="header__content__column__border header__content__column__border--top"></div>
-      <div class="header__content__column__border header__content__column__border--top"></div>
-      <div class="header__content__column__border header__content__column__border--top header__content__column__border--bolder">
-      </div>
-      <div class="header__content__column__border header__content__column__border--top"></div>
-      <p class="header__content__column__border header__content__column__border--top header__content__column__border--last">
+      <div class="header__content__column__border header__content__column__border--bolder"></div>
+      <div class="header__content__column__border"></div>
+      <div class="header__content__column__border"></div>
+      <div class="header__content__column__border"></div>
+      <div class="header__content__column__border header__content__column__border--bolder"></div>
+      <div class="header__content__column__border"></div>
+      <div class="header__content__column__border"></div>
+      <div class="header__content__column__border"></div>
+      <div class="header__content__column__border header__content__column__border--bolder"></div>
+      <div class="header__content__column__border"></div>
+      <p class="header__content__column__border header__content__column__border--last">
         Ichiban isn't simply a mode of transport; it's an escape, a liberating streak of freedom in an excessively interconnected
         world.
       </p>
@@ -48,13 +45,11 @@
       <div class="header__content__column__top">
         <span>BROWSE</span><span>LIST:FULL</span>
       </div>
-      <div class="header__content__column__border header__content__column__border--top header__content__column__border--bolder">
-      </div>
-      <div class="header__content__column__border header__content__column__border--top"></div>
-      <div class="header__content__column__border header__content__column__border--top"></div>
-      <div class="header__content__column__border header__content__column__border--top"></div>
-      <div class="header__content__column__border header__content__column__border--top header__content__column__border--bolder">
-      </div>
+      <div class="header__content__column__border header__content__column__border--bolder"></div>
+      <div class="header__content__column__border"></div>
+      <div class="header__content__column__border"></div>
+      <div class="header__content__column__border"></div>
+      <div class="header__content__column__border header__content__column__border--bolder"></div>
       <a href="#unique-design" class="header__content__column__anchor">
         <div class="header__content__column__anchor__box header__content__column__anchor__box--top">
           <div class="header__content__column__anchor__number">001</div>
@@ -95,7 +90,7 @@
           <div class="header__content__column__anchor__text">CONTACT US</div>
         </div>
       </a>
-      <div class="header__content__column__border header__content__column__border--top"></div>
+      <div class="header__content__column__border"></div>
     </div>
   </div>
 </header>
@@ -168,6 +163,27 @@
 
   .header__content__column {
     width: 100%;
+  }
+
+  .header__content__column--left,
+  .header__content__column--right {
+    animation: fade-down 1.5s cubic-bezier(0.895, 0.03, 0.685, 0.22) 0.5s;
+  }
+
+  .header__content__column--middle {
+    animation: fade-down 2.5s cubic-bezier(0.895, 0.03, 0.685, 0.22) 0.7s;
+  }
+
+  @keyframes fade-down {
+    0% {
+      opacity: 0;
+      transform: translateY(-25px) scale(0.95);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
   }
 
   .header__content__column__top {
