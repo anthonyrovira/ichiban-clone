@@ -1,11 +1,10 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
   base: "/",
   compressHTML: true,
   prefetch: true,
@@ -22,5 +21,5 @@ export default defineConfig({
     },
   },
 
-  adapter: vercel({}),
+  adapter: vercel({ webAnalytics: { enabled: true } }),
 });
