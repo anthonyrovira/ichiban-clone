@@ -84,14 +84,6 @@ const frameUrls = generateHeroFrameUrls(totalFrames);
           const scrollFraction = Math.max(0, Math.min(1, scrollPosition / maxScroll));
           const frame = Math.min(Math.floor(scrollFraction * (totalFrames - 1)), totalFrames - 1);
 
-          console.log({
-            scrollPosition,
-            maxScroll,
-            scrollFraction,
-            calculatedFrame: frame,
-            currentFrame,
-          });
-
           if (frame !== currentFrame) {
             currentFrame = frame;
             updateImage(frame);

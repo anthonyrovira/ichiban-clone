@@ -11,7 +11,7 @@ export default defineConfig({
   prefetch: true,
 
   image: {
-    domains: ["https://res.cloudinary.com"],
+    domains: ["res.cloudinary.com"],
   },
 
   vite: {
