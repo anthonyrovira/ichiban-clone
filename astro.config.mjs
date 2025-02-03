@@ -8,7 +8,6 @@ export default defineConfig({
   output: "static",
   base: "/",
   compressHTML: true,
-  prefetch: true,
 
   devToolbar: {
     enabled: false,
