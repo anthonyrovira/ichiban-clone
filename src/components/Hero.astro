@@ -15,7 +15,7 @@ const frameUrls = generateHeroFrameUrls(totalFrames);
   <div class="animation_spacer"></div>
 </section>
 
-<script define:vars={{ frameUrls, totalFrames }}>
+<script is:inline define:vars={{ frameUrls, totalFrames }}>
   const imageCache = new Map();
   let currentFrame = 0;
   let isLoaded = false;

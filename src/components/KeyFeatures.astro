@@ -100,7 +100,7 @@ const powerImg = getCldImageUrl({ src: "https://res.cloudinary.com/hysteria/imag
   </div>
 </section>
 
-<script define:vars={{ frameUrls, totalFrames }}>
+<script is:inline define:vars={{ frameUrls, totalFrames }}>
   const animatedTransmission = document.getElementById("animated-transmission");
 
   // Cache for preloaded images
