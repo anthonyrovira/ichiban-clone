@@ -15,7 +15,7 @@ export default defineConfig({
   },
 
   build: {
-    assets: "/src/assets",
+    assets: "assets",
   },
 
   vite: {
