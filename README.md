@@ -1,128 +1,125 @@
 # Clone Ichiban.bike 🏍️
 
-Un clone du site [Ichiban.bike](https://www.ichiban.bike/) développé avec le meta-framework [Astro](https://astro.build/). Ce projet a été créé dans un but d'apprentissage et de pratique, en mettant l'accent sur les animations de défilement fluides et les effets visuels stylisés.
+A clone of [Ichiban.bike](https://www.ichiban.bike/) developed with the [Astro](https://astro.build/) meta-framework. This project was created for learning and practice purposes, focusing on smooth scroll animations and stylized visual effects.
 
-## 🎯 Objectif du Projet
+## 🎯 Project Objective
 
-Ce projet est une reproduction du site Ichiban.bike, conçu uniquement pour la version desktop. L'accent a été mis sur :
-- L'implémentation d'animations de défilement fluides
-- L'animation frame-by-frame d'une moto futuriste japonaise
-- Optimisation des Images et des performances globales du site vis à vis de sa version originale
-- L'utilisation des fonctionnalités d'Astro
-- La reproduction fidèle du design original
+This project is a reproduction of the Ichiban.bike website, designed for desktop version only. The focus was on:
+- Implementation of smooth scroll animations
+- Frame-by-frame animation of a futuristic Japanese motorcycle
+- Image and overall site performance optimization compared to the original version
+- Utilizing Astro's features
+- Faithful reproduction of the original design
 
-## 🛠️ Technologies Utilisées
+## 🛠️ Technologies Used
 
 - Astro v5.1.3
-- astro-cloudinary pour la gestion des images
-- CSS natif pour le styling
-- Polices personnalisées (Consola, Akira Expanded)
+- astro-cloudinary for image management
+- Native CSS for styling
 
-## 🚀 Optimisation des Performances
+## 🚀 Performance Optimization
 
-Ce clone met l'accent sur l'optimisation des performances, avec une approche méthodique de la gestion des assets :
+This clone emphasizes performance optimization, with a methodical approach to asset management:
 
-### Optimisation des Images
-- Conversion de toutes les images en format WebP via Squoosh.app
-- Remplacement des images en base64 du site original par des fichiers WebP optimisés
-- Utilisation du composant `Image` d'Astro pour l'optimisation automatique :
-  - Chargement différé (lazy loading)
-  - Redimensionnement automatique
-  - Optimisation des formats modernes (WebP)
-  - Génération automatique des srcset
+### Image Optimization
+- Conversion of all images to WebP format via Squoosh.app
+- Replacement of original site's base64 images with optimized WebP files
+- Use of Astro's `Image` component for automatic optimization:
+  - Lazy loading
+  - Automatic resizing
+  - Modern format optimization (WebP)
+  - Automatic srcset generation
 
-### Choix Techniques
-- Utilisation de `background-image` CSS pour l'animation frame-by-frame
-  - Meilleure exploitation de l'accélération matérielle GPU
-  - Réduction de la charge JavaScript
-  - Performance accrue sur le rendu des animations
+### Technical Choices
+- Use of CSS `background-image` for frame-by-frame animation
+  - Better GPU hardware acceleration
+  - Reduced JavaScript load
+  - Enhanced animation rendering performance
 
-Je vais améliorer la section des résultats de performance en ajoutant plus de détails techniques et de clarifications. Voici une version améliorée :
+### Performance Comparison Results
 
-### Résultats Comparatifs de Performance
+| Metric | Clone (Cold Start) | Clone (Hot Start) | Original (Cold Start) | Original (Hot Start) |
+|----------|-------------------|------------------|---------------------|-------------------|
+| Total Size | 13.3 MB | 8.5 MB | 48.6 MB | 41.5 MB |
+| Load Time | 8.59s | 893ms | 3.81s | 2.31s |
+| First Paint | 1.69s | 859ms | 1.59s | 1.47s |
+| DOMContentLoaded | 301ms | 261ms | 3.7s | 1.23s |
 
-| Métrique         | Clone (Cold Start) | Clone (Hot Start) | Original (Cold Start) | Original (Hot Start) |
-| ---------------- | ------------------ | ----------------- | --------------------- | -------------------- |
-| Taille totale    | 13,3 Mo            | 8,5 Mo            | 48,6 Mo               | 41,5 Mo              |
-| Load Time        | 8,59s              | 893ms             | 3,81s                 | 2,31s                |
-| First Paint      | 1,69s              | 859ms             | 1,59s                 | 1,47s                |
-| DOMContentLoaded | 301ms              | 261ms             | 3,7s                  | 1,23s                |
+### 📊 Detailed Metrics Analysis
 
-### 📊 Analyse Détaillée des Métriques
+1. **Total Load Time**
+   - Represents the time needed to load all page resources
+   - Includes: HTML, CSS, JavaScript, images, fonts, and other assets
+   - Higher cold start time (8.59s) explained by:
+     - Initial loading of animation frames (motorcycle sequence)
+     - Browser cache creation for static assets
+     - JavaScript parse and execution time
 
-1.  **Temps de Chargement Total (Load Time)**
-    -   Représente le temps nécessaire pour charger l'ensemble des ressources de la page
-    -   Inclut : HTML, CSS, JavaScript, images, fonts et autres assets
-    -   Le temps plus élevé en cold start (8,59s) s'explique par :
-        -   Le chargement initial des frames d'animation (séquence moto)
-        -   La création du cache navigateur pour les assets statiques
-        -   Le temps de parse et d'exécution du JavaScript
-2.  **DOMContentLoaded**
-    -   Moment où le HTML initial est complètement chargé et analysé
-    -   Les scripts synchrones sont exécutés
-    -   Ne comprend pas les ressources asynchrones (images, frames d'animation)
-    -   Performance : 301ms vs 3,7s (original)
-    -   Amélioration obtenue grâce à :
-        -   L'élimination des scripts bloquants
-        -   L'optimisation du HTML critique
-        -   La stratégie de chargement différé
-3.  **First Paint**
-    -   Premier affichage visuel pour l'utilisateur
-    -   Légèrement plus lent que l'original (1,69s vs 1,59s)
-    -   Compromis accepté pour garantir une meilleure expérience globale
-4.  **Optimisation de la Taille**
-    -   Réduction drastique de 72% (13,3 Mo vs 48,6 Mo)
-    -   Décomposition des gains :
-        -   Images WebP : ~60% de réduction
-        -   Élimination du Base64 : ~25% de réduction
+2. **DOMContentLoaded**
+   - When initial HTML is completely loaded and parsed
+   - Synchronous scripts are executed
+   - Doesn't include async resources (images, animation frames)
+   - Performance: 301ms vs 3.7s (original)
+   - Improvement achieved through:
+     - Elimination of blocking scripts
+     - Critical HTML optimization
+     - Deferred loading strategy
 
-### 🔄 Analyse des Hot vs Cold Starts
+3. **First Paint**
+   - First visual display for the user
+   - Slightly slower than original (1.69s vs 1.59s)
+   - Acceptable trade-off for better overall experience
 
-**Cold Start (Premier Chargement)**
+4. **Size Optimization**
+   - Drastic 72% reduction (13.3 MB vs 48.6 MB)
+   - Breakdown of gains:
+     - WebP images: ~60% reduction
+     - Base64 elimination: ~25% reduction
 
--   Cache vide
--   Téléchargement complet des ressources
--   Création des caches navigateur
--   Compilation initiale du JavaScript
+### 🔄 Hot vs Cold Start Analysis
 
-**Hot Start (Chargements Suivants)**
+**Cold Start (First Load)**
+- Empty cache
+- Complete resource download
+- Browser cache creation
+- Initial JavaScript compilation
 
--   Utilisation du cache navigateur
--   Réduction significative du Load Time (893ms vs 8,59s)
--   Amélioration de 89% du temps de chargement
--   Bénéfices de la stratégie de mise en cache d'Astro
+**Hot Start (Subsequent Loads)**
+- Browser cache utilization
+- Significant Load Time reduction (893ms vs 8.59s)
+- 89% loading time improvement
+- Benefits of Astro's caching strategy
 
-
-## 🚀 Installation et Démarrage
-Installation des dépendances
+## 🚀 Installation and Setup
+Install dependencies
 ```bash
-npm install
+pnpm install
 ```
 
-Démarrage du serveur de développement
+Start development server
 ```bash
-npm run dev
-```
-Construction du site
-```bash
-npm run build
+pnpm dev
 ```
 
-Prévisualisation de la version de production
+Build the site
 ```bash
-npm run preview
+pnpm build
 ```
 
+Preview production version
+```bash
+pnpm preview
+```
 
 ## ⚠️ Limitations
 
-- Site optimisé uniquement pour la version desktop (Pas de version responsive)
-- Projet à but éducatif uniquement
+- Site optimized for desktop version only (No responsive version)
+- Educational project only
 
-## 🎨 Crédits
+## 🎨 Credits
 
-Ce projet est un clone développé à des fins éducatives, inspiré par le site [Ichiban.bike](https://www.ichiban.bike/). Tous les droits de design originaux appartiennent à leurs propriétaires respectifs.
+This project is a clone developed for educational purposes, inspired by [Ichiban.bike](https://www.ichiban.bike/). All original design rights belong to their respective owners.
 
 ## 📝 Note
 
-Ce projet est une reproduction non officielle créée dans un but d'apprentissage et ne doit pas être utilisé à des fins commerciales.
+This project is an unofficial reproduction created for learning purposes and should not be used for commercial purposes.
