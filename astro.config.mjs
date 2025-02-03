@@ -10,10 +10,6 @@ export default defineConfig({
   compressHTML: true,
   prefetch: true,
 
-  image: {
-    domains: ["res.cloudinary.com"],
-  },
-
   vite: {
     resolve: {
       alias: {
