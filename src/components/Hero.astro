@@ -43,7 +43,7 @@ const frameUrls = generateHeroFrameUrls(totalFrames);
       isLoaded = true;
       loader?.remove();
       updateImage(0);
-      console.log("Images chargées:", imageCache.size);
+      // console.log("Images chargées:", imageCache.size);
     } catch (error) {
       console.error("Erreur de chargement:", error);
     }
@@ -56,7 +56,7 @@ const frameUrls = generateHeroFrameUrls(totalFrames);
     if (cachedImage) {
       const imageUrl = cachedImage.src;
       motoImage.style.backgroundImage = `url('${imageUrl}')`;
-      console.log("Frame mise à jour:", frame, imageUrl);
+      // console.log("Frame mise à jour:", frame, imageUrl);
     }
   }
 
@@ -110,7 +110,7 @@ const frameUrls = generateHeroFrameUrls(totalFrames);
     // Wait for images to preload before adding scroll listener
     preloadImages().then(() => {
       window.addEventListener("scroll", handleScroll, { passive: true });
-      console.log("Écouteur de scroll ajouté");
+      // console.log("Écouteur de scroll ajouté");
     });
 
     // Recalculate maxScroll on resize

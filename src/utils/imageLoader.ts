@@ -18,7 +18,7 @@ export function generateHeroFrameUrls(totalFrames: number) {
 export function generateTransmissionFrameUrls(totalFrames: number) {
   return Array.from({ length: totalFrames }, (_, i) => {
     const frameNumber = `${(i + 1).toString().padStart(3, "0")}`;
-    return `/frames/frames/transmission/img-${frameNumber}.webp`;
+    return `/frames/transmission/img-${frameNumber}.webp`;
   });
 }
 
@@ -30,6 +30,6 @@ export function generateTransmissionFrameUrls(totalFrames: number) {
 export function generateHeartFrameUrls(totalFrames: number) {
   return Array.from({ length: totalFrames }, (_, i) => {
     const frameNumber = `${(i + 1).toString().padStart(3, "0")}`;
-    return `/frames/frames/heart/img-${frameNumber}.webp`;
+    return `/frames/heart/img-${frameNumber}.webp`;
   });
 }

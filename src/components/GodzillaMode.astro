@@ -103,7 +103,7 @@ const godzillaImage = getCldImageUrl({
       await Promise.all(loadingPromises);
       isLoaded = true;
       startAnimation();
-      console.log("Images loaded:", imageCache.size);
+      // console.log("Images loaded:", imageCache.size);
     } catch (error) {
       console.error("Loading error:", error);
     }
