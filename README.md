@@ -2,6 +2,8 @@
 
 A clone of [Ichiban.bike](https://www.ichiban.bike/) developed with the [Astro](https://astro.build/) meta-framework. This project was created for learning and practice purposes, focusing on smooth scroll animations and stylized visual effects.
 
+![preview](thumbnail.png)
+
 ## 🎯 Project Objective
 
 This project is a reproduction of the Ichiban.bike website, designed for desktop version only. The focus was on:
