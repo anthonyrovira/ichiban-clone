@@ -5,20 +5,13 @@ import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
+  output: "static",
   base: "/",
   compressHTML: true,
   prefetch: true,
-  site: "https://ichiban-clone.vercel.app/",
 
   image: {
     domains: ["https://res.cloudinary.com"],
-  },
-
-  experimental: {
-    svg: {
-      mode: "sprite",
-    },
   },
 
   vite: {
