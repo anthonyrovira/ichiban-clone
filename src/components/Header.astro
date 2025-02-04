@@ -167,11 +167,13 @@
 
   .header__content__column--left,
   .header__content__column--right {
-    animation: fade-down 1.5s cubic-bezier(0.895, 0.03, 0.685, 0.22) 0.5s;
+    opacity: 0;
+    animation: fade-down 1.5s cubic-bezier(0.895, 0.03, 0.685, 0.22) 0.5s forwards;
   }
 
   .header__content__column--middle {
-    animation: fade-down 2.5s cubic-bezier(0.895, 0.03, 0.685, 0.22) 0.7s;
+    opacity: 0;
+    animation: fade-down 2.5s cubic-bezier(0.895, 0.03, 0.685, 0.22) 0.7s forwards;
   }
 
   @keyframes fade-down {
